@@ -3,6 +3,7 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import mongoose from "mongoose";
 import helmet from "helmet";
+import * as vendor from './src/vendor';
 dotenv.config();
 if(!process.env.PORT){
     console.log("Error in getting PORT");
@@ -17,3 +18,5 @@ const server = app.listen(PORT, ()=>{
     console.log(`Port number as: ${PORT}`);
 });
 app.get('/', (req, res) => res.send('Welcome to NodeJs App using TypeScript'));
+app.get('/vendor/fetchAll',vendor.fetchAll);
+app.post('/vendor/add',vendor.create);
