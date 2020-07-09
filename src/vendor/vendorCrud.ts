@@ -1,5 +1,5 @@
-import { Vendor } from './vendor';
-import vendorModel from './vendor-db-schema';
+import { Vendor } from './vendorInterface';
+import vendorModel from './vendorModel';
 
 export const getVendorList = async (req:any, res:any) => {
     vendorModel.find((err: any, result: any) => {
