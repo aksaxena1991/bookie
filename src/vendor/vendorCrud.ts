@@ -1,6 +1,6 @@
 import { Vendor } from './vendorInterface';
 import vendorModel from './vendorModel';
-
+import {messagesCodes} from '../constants';
 export const getVendorList = async (req:any, res:any) => {
     vendorModel.find((err: any, result: any) => {
         if (err) {
@@ -14,16 +14,13 @@ export const getVendorList = async (req:any, res:any) => {
 
   export const createVendor = async (req:any, res:any) => {
     const request: Vendor = req.body;
-    
     let model = new vendorModel(request);
-    
-    
     model.save((err:any, result:any) => {
         if (err) {
-            res.send(err);
+            res.send({code:messagesCodes.errorCode,error:err})
           } else {
           
-            res.send(result);
+            res.send({code:messagesCodes.successCode,msg:"Vendor has been created!",data:result})
           }
     });
   };
