@@ -1,17 +1,6 @@
 import mongoose from "mongoose";
-const uri = "mongodb+srv://rootBookie:rootBookie@bookie.dqouf.mongodb.net/bookie?retryWrites=true&w=majority";
-const conn = mongoose.createConnection(uri,{
+import dbConnection from '../dbConfig';
 
-    useNewUrlParser: true,
-
-    useCreateIndex: true,
-
-    useUnifiedTopology: true,
-
-    useFindAndModify: false
-
-}
-);
 const vendorSchema = new mongoose.Schema({
     firstname:{type: String},
     lastname:{type: String},
@@ -26,5 +15,5 @@ const vendorSchema = new mongoose.Schema({
 
 );
 
-const vendorModel = conn.model('vendors',vendorSchema);
+const vendorModel = dbConnection.model('vendors',vendorSchema);
 export default vendorModel;
