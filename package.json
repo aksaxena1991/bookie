@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "webpack": "webpack --config ./webpack.config.ts",
         "start": "nodemon ./dist/index.js",
-        "dev": "webpack-dev-server --content-base public/ --inline --port 8080"
+        "dev": "webpack-dev-server --hot-only ./dist/index.js --inline --port 8080",
+        "startDev": "nodemon ./dist/index.js webpack "
     },
     "author": "Anubhav Saxena",
     "license": "ISC",

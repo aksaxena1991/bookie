@@ -39,16 +39,16 @@ export const updateVendor = async (req:any, res:any) => {
       }
   };
 
-  export const deleteVendor = async (req:any, res:any) => {
-    const vendorID: number = req.body['vendorID'];
-    await vendorService.deleteVendor(vendorID);
-    try {
-        res.status(200).send({
-            message: "Successfully deleted",
-             IsSuccess: true,
-             result: ""
-        });
-      } catch (e) {
-        res.status(404).send(e.message);
-      }
-  };
+  // export const deleteVendor = async (req:any, res:any) => {
+  //   const _id: string = req.body['_id'];
+  //   await vendorService.deleteVendor(_id);
+  //   try {
+  //       res.status(200).send({
+  //           message: "Successfully deleted",
+  //            IsSuccess: true,
+  //            result: ""
+  //       });
+  //     } catch (e) {
+  //       res.status(404).send(e.message);
+  //     }
+  // };
