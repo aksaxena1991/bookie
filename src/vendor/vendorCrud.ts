@@ -4,10 +4,11 @@ import {messagesCodes} from '../constants';
 export const getVendorList = async (req:any, res:any) => {
     vendorModel.find((err: any, result: any) => {
         if (err) {
-          res.send("Error!");
+          res.send({code:messagesCodes.errorCode,error:err});
         } else {
-        console.log(JSON.stringify(result))
-          res.send(result);
+          result.length > 0 ? 
+          res.send({code:messagesCodes.successCode,msg:"List of all vendors!",data:result}) :
+          res.send({code:messagesCodes.successCode,msg:"List of all vendors not found!"})
         }
       });
   };
@@ -26,7 +27,17 @@ export const getVendorList = async (req:any, res:any) => {
   };
 
 export const updateVendor = async (req:any, res:any) => {
-    const vendor: Vendor = req.body;
+    const request: Vendor = req.body;
+    let model = new vendorModel(request);
+    model.updateOne((err:any, result:any) => {
+        if (err) {
+            res.send({code:messagesCodes.errorCode,error:err})
+          } else {
+          
+            res.send({code:messagesCodes.successCode,msg:"Vendor has been updated!",data:result})
+          }
+    });
+    
     //Update
   };
 
