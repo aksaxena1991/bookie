@@ -42,6 +42,6 @@ export const updateVendor = async (req:any, res:any) => {
   };
 
   export const deleteVendor = async (req:any, res:any) => {
-    const vendorID: number = req.body['vendorID'];
+    const _id: number = req.body['_id'];
     //delete
   };
