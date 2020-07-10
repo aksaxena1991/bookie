@@ -27,17 +27,16 @@ export const getLegerList = async (req:any, res:any) => {
   };
 
 export const updateLeger = async (req:any, res:any) => {
-    const request: Ledger = req.body;
-    let model = new ledgerModel(request);
-    model.updateOne((err:any, result:any) => {
-        if (err) {
-            res.send({code:messagesCodes.errorCode,error:err})
-          } else {
-          
-            res.send({code:messagesCodes.successCode,msg:"Leger has been updated!",data:result})
-          }
-    });
-    
+  const request: Ledger = req.body;
+  const _id = request['_id'];
+  ledgerModel.updateOne({_id:_id},{$set: request},(err:any, result:any) => {
+      if (err) {
+          res.send({code:messagesCodes.errorCode,error:err})
+        } else {
+        
+          res.send({code:messagesCodes.successCode,msg:"Ledger has been updated!"})
+        }
+  });
     //Update
   };
 

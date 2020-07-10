@@ -28,13 +28,13 @@ export const getVendorList = async (req:any, res:any) => {
 
 export const updateVendor = async (req:any, res:any) => {
     const request: Vendor = req.body;
-    let model = new vendorModel(request);
-    model.updateOne((err:any, result:any) => {
+    const _id = request['_id'];
+    vendorModel.updateOne({_id:_id},{$set: request},(err:any, result:any) => {
         if (err) {
             res.send({code:messagesCodes.errorCode,error:err})
           } else {
           
-            res.send({code:messagesCodes.successCode,msg:"Vendor has been updated!",data:result})
+            res.send({code:messagesCodes.successCode,msg:"Vendor has been updated!"})
           }
     });
     
