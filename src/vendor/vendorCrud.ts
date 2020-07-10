@@ -1,5 +1,6 @@
 import { Vendor } from './vendorInterface';
 import vendorModel from './vendorModel';
+import ledgerModel from '../ledgers/ledgersModel';
 import {messagesCodes} from '../constants';
 export const getVendorList = async (req:any, res:any) => {
     vendorModel.find((err: any, result: any) => {
@@ -50,9 +51,11 @@ export const updateVendor = async (req:any, res:any) => {
         res.send({code:messagesCodes.successCode,msg:"This vendor already has been deleted!"})
       }
       else {
-      
-        res.send({code:messagesCodes.successCode,msg:"Vendor has been deleted!",data:result})
+        ledgerModel.deleteMany({vendorID: _id}).then((obj) =>{
+          res.send({code:messagesCodes.successCode,msg:"Vendor has been deleted!",data:result});
+        });
       }
+      
     });
     //delete
   };
