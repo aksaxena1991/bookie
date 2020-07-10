@@ -43,5 +43,16 @@ export const updateLeger = async (req:any, res:any) => {
 
   export const deleteLeger = async (req:any, res:any) => {
     const _id: number = req.body['_id'];
+    ledgerModel.findOneAndDelete({_id:_id}, (err:any, result:any) => {
+      if (err) {
+        res.send({code:messagesCodes.errorCode,error:err})
+      } else if(result == null) {
+        res.send({code:messagesCodes.successCode,msg:"This ledger already has been deleted!"})
+      }
+      else {
+      
+        res.send({code:messagesCodes.successCode,msg:"Ledger has been deleted!",data:result})
+      }
+    })
     //delete
   };

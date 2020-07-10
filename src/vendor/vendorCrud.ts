@@ -43,5 +43,16 @@ export const updateVendor = async (req:any, res:any) => {
 
   export const deleteVendor = async (req:any, res:any) => {
     const _id: number = req.body['_id'];
+    vendorModel.findOneAndDelete({_id: _id}, (err:any, result:any)=> {
+      if (err) {
+        res.send({code:messagesCodes.errorCode,error:err})
+      } else if(result == null) {
+        res.send({code:messagesCodes.successCode,msg:"This vendor already has been deleted!"})
+      }
+      else {
+      
+        res.send({code:messagesCodes.successCode,msg:"Vendor has been deleted!",data:result})
+      }
+    });
     //delete
   };
