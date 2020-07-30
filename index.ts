@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import helmet from "helmet";
 import * as vendor from './src/vendor';
 import * as ledger from './src/ledgers';
+import * as stock from './src/stock';
 dotenv.config();
 
 if(!process.env.PORT){
@@ -29,3 +30,8 @@ app.get('/ledger/fetchAll',ledger.fetchAll);
 app.post('/ledger/add',ledger.create);
 app.put('/ledger/update',ledger.update);
 app.delete('/ledger/delete',ledger.remove);
+
+app.get('/stock/fetchAll',stock.fetchAll);
+app.post('/stock/add',stock.create);
+app.put('/stock/update',stock.update);
+app.delete('/stock/delete',stock.remove);

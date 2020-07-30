@@ -9,7 +9,7 @@ export const getVendorList = async (req:any, res:any) => {
         } else {
           result.length > 0 ? 
           res.send({code:messagesCodes.successCode,msg:"List of all vendors!",data:result}) :
-          res.send({code:messagesCodes.successCode,msg:"List of all vendors not found!"})
+          res.send({code:messagesCodes.successCode,msg:"Vendors not found!"})
         }
       });
   };
